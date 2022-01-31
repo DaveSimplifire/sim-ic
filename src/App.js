@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import Header from './components/Header';
-import Docs from './components/Docs'
+import Docs from './components/Docs';
+import AddDoc from './components/AddDoc';
+
 
 function App() {
+
+  const [showAddDoc, setShowAddDoc] = useState(false)
 
   const [docs, setDocs] = useState([
     {
@@ -23,15 +27,32 @@ function App() {
   ]
 )
 
+// Add Document
+const addDoc = (doc) => {
+  const id = Math.floor(Math.random() * 1000) + 1
+  const newDoc = { id, ...doc }
+  console.log(newDoc)
+  setDocs([...docs, newDoc])
+}
+
 // Delete Doc
 const deleteDoc = (id) => {
   setDocs(docs.filter((doc) => doc.id !== id ))
 }
 
   return (
-    <div className="container">
-      <Header title='Documents' />
-      <Docs docs={docs} onDelete={deleteDoc} />
+    <div className='container'>
+      <Header 
+        onAdd={() => setShowAddDoc 
+        (!showAddDoc)} 
+        showAdd={showAddDoc}
+        />
+      {showAddDoc && <AddDoc onAdd={addDoc} />}
+      {docs.length > 0 ? (
+        <Docs docs={docs} onDelete={deleteDoc} />
+      ) : (
+        'No Documents to show'
+      )}
     </div>
   )
   }
