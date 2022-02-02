@@ -15,7 +15,7 @@ const Header = ({ title, onAdd, showAdd }) => {
 }
 
 Header.defaultProps = {
-    title: 'Documents',
+    title: 'My Documents',
 }
 
 Header.propTypes ={

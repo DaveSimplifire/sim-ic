@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import Home from './components/Home';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Docs from './components/Docs';
 import AddDoc from './components/AddDoc';
+import { Editor } from '@tinymce/tinymce-react';
 
 
 function App() {
@@ -41,7 +44,8 @@ const deleteDoc = (id) => {
 }
 
   return (
-    <div className='container'>
+    <div className="container">
+      <Home />
       <Header 
         onAdd={() => setShowAddDoc 
         (!showAddDoc)} 
@@ -53,6 +57,7 @@ const deleteDoc = (id) => {
       ) : (
         'No Documents to show'
       )}
+      <Footer />
     </div>
   )
   }
